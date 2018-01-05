@@ -21,6 +21,7 @@ class WebHandler {
     handle(url, $, Scheduler) {
 
         //console.log(url);
+        var self = this;
 
         if (!Utils.isNull($)) {
             $('*').children().each(function(i, elem) {
@@ -29,12 +30,31 @@ class WebHandler {
                 let linkText = $(this).text();
 
                 if (!Utils.isBlankStr(linkAttr)) {
-                    console.log(linkText + ' => ' + linkAttr);
+
+                    if ((!Utils.isBlankStr(self.keyword) && !Utils.isBlankStr(linkText)
+                            && linkText.indexOf(self.keyword) >= 0)
+                        || (!Utils.isNull(self.regex) && self.regex.test(linkText))) {
+                        console.log(linkText + ' => ' + linkAttr);
+                    }
 
                     Scheduler.schedule(linkAttr);
                 }
             });
         }
+    }
+
+    /**
+     * setFilterRegex
+     */
+    setFilterRegex(regex) {
+        this.regex = regex;
+    }
+
+    /**
+     * setKeyword
+     */
+    setKeyword(keyword) {
+        this.keyword = keyword;
     }
 }
 

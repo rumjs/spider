@@ -27,7 +27,7 @@ class WebParser {
             throw 'protocol unsupported:' + url;
         }
 
-        console.log("++++++++++++++++ => " + url);
+        // console.log("++++++++++++++++ => " + url);
 
         /**
          * get dom from the given url
@@ -43,16 +43,25 @@ class WebParser {
                      * schedule the redirectUrl
                      */
                     res.resume();
-                    console.log('statusCode:' + statusCode);
                     let redirectUrl = UrlConverter.convert(res.headers.location, url);
-                    console.log('redirectUrl:' + redirectUrl);
-                    Scheduler.schedule(redirectUrl, callback);
+                    if (Utils.isBlankStr(redirectUrl)) {
+                        console.error('url:' + url + ', statusCode:' + statusCode + ', redirectUrl:' + redirectUrl);
+                    } else {
+                        Scheduler.schedule(redirectUrl, callback);
+                    }
+                    return;
+                } else if (statusCode === 403 || statusCode === 404) {
+                    /**
+                     * error status
+                     */
+                    // console.error('url:' + url + ', statusCode:' + statusCode);
+                    res.resume();
                     return;
                 } else if (statusCode !== 200) {
                     /**
                      * error status
                      */
-                    console.error('statusCode:' + statusCode);
+                    console.error('url:' + url + ', statusCode:' + statusCode);
                     res.resume();
                     return;
                 }

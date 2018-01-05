@@ -1,14 +1,28 @@
 const process      = require('process');
 const UrlConverter = require('./UrlConverter');
+const UrlBuffer    = require('./UrlBuffer');
 const Scheduler    = require('./Scheduler');
 const WebHandler   = require('./WebHandler');
 
-let handler = new WebHandler();
-Scheduler.register(handler);
 
+var handler = new WebHandler();
 process.argv.forEach((val, idx) => {
     if (idx === 2) {
         console.log(val);
-        Scheduler.schedule(val);
+
+        setTimeout(() => {
+            Scheduler.register(handler);
+            Scheduler.schedule(val);
+        }, 1000);
+    }
+
+    if (idx === 3) {
+        console.log(val);
+        handler.setKeyword(val);
+    }
+
+    if (idx === 4) {
+        console.log(val);
+        UrlBuffer.setLimitNum(val);
     }
 });
