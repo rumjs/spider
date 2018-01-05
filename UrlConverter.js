@@ -22,12 +22,12 @@ class UrlConverter {
             hostUrl = UrlConverter.cleanTail(hostAddr).toLowerCase();
         }
 
-        if (addr.substr(0, 2) === '//') {
-            url = 'http:' + addr;
-        } else if (addr.substr(0, 1) == '/'
+        if (url.substr(0, 2) === '//') {
+            url = 'http:' + url;
+        } else if (url.substr(0, 1) == '/'
             && !Utils.isBlankStr(hostUrl)) {
-            url = hostUrl + addr;
-        } else if (addr.substr(0, 11) == 'javascript:') {
+            url = hostUrl + url;
+        } else if (url.substr(0, 11) == 'javascript:') {
             url = undefined;
         }
 

@@ -43,9 +43,10 @@ class WebParser {
                      * schedule the redirectUrl
                      */
                     res.resume();
-                    Scheduler.schedule(
-                        UrlConverter.convert(url, res.headers.location),
-                        callback);
+                    console.log('statusCode:' + statusCode);
+                    let redirectUrl = UrlConverter.convert(res.headers.location, url);
+                    console.log('redirectUrl:' + redirectUrl);
+                    Scheduler.schedule(redirectUrl, callback);
                     return;
                 } else if (statusCode !== 200) {
                     /**
