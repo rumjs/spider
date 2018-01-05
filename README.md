@@ -5,8 +5,10 @@ a light spider Scheduler.
 it's free for anyone.
 
 # how to use?
-`npm i` 
-`node index.js http://www.taobao.com` 
+
+run demo:
+1) `npm i` 
+2) `node index.js http://www.taobao.com` 
 
 use it in javascript:
 1) implement your handlers extends `WebHandler`
