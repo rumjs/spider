@@ -6,7 +6,7 @@ it's free for anyone.
 
 # how to use?
 ### npm i
-### node index.js
+### node index.js http://www.taobao.com
 
 1) edit the url in `index.js`
 2) implement your handlers extends `WebHandler`
