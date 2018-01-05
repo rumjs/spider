@@ -5,13 +5,12 @@ a light spider Scheduler.
 it's free for anyone.
 
 # how to use?
-### npm i
-### node index.js http://www.taobao.com
-
-1) edit the url in `index.js`
-2) implement your handlers extends `WebHandler`
-3) register your handlers into `Scheduler`
-4) `Scheduler.schedule(url)`
+`npm i`
+`node index.js http://www.taobao.com`
+use it in javascript:
+1) implement your handlers extends `WebHandler`
+2) register your handlers into `Scheduler`
+3) `Scheduler.schedule(url)`
 
 # TODO
 add rule for depth and breadth
